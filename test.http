@@ -1,0 +1,11 @@
+
+POST https://accounts.spotify.com/api/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=de2667bc2ca84f53975ed2f75fc96230&client_secret=e3f3560f8a174137afd4b5308a48ceb7
+
+###
+
+### Get Recommendations ###
+GET https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap
+Authorization: Bearer BQB9EJBI2IoCd0JCl82C_nAn6LZn_dlY5KjsJwU1YxGDAZRnoinTWMjw0ekdsl6KN-ncbLKMBInAZaJ6jHJklCLe9cdGIoN-aax0QyoC7eRH5o7xZak
