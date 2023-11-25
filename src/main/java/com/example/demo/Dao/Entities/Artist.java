@@ -1,9 +1,12 @@
 package com.example.demo.Dao.Entities;
 
 public class Artist {
-    private int ID;
+    private long ID;
     private String seedTrack;
     private String name;
+
+    public Artist() {
+    }
 
     public Artist(String seedTrack, String name) {
         this.seedTrack = seedTrack;
@@ -11,11 +14,11 @@ public class Artist {
     }
 
     // Getters and setters for the attributes
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 

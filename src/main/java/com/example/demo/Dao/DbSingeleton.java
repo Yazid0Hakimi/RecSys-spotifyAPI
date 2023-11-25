@@ -10,7 +10,7 @@ public class DbSingeleton {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/recsys", "root","");
-            System.out.println("Database connected");
+//            System.out.println("Database connected");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("database not connected");
             e.printStackTrace();
