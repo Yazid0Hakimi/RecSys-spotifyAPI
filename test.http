@@ -1,11 +1,29 @@
-
-POST https://accounts.spotify.com/api/token
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=client_credentials&client_id=de2667bc2ca84f53975ed2f75fc96230&client_secret=e3f3560f8a174137afd4b5308a48ceb7
-
-###
-
 ### Get Recommendations ###
-GET https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap
-Authorization: Bearer BQB9EJBI2IoCd0JCl82C_nAn6LZn_dlY5KjsJwU1YxGDAZRnoinTWMjw0ekdsl6KN-ncbLKMBInAZaJ6jHJklCLe9cdGIoN-aax0QyoC7eRH5o7xZak
+GET https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap&seed_artists=4BFLElxtBEdsdwGA1kHTsx
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
+
+####
+GET https://api.spotify.com/v1/recommendations/available-genre-seeds
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
+
+####
+GET https://api.spotify.com/v1/recommendations/available-genre-seeds
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
+
+###?# artist
+get https://api.spotify.com/v1/search?q=artist:elgrande%20toto&type=artist
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
+####genre 
+
+get https://api.spotify.com/v1/search?q=genre:pop&type=genres
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
+####album
+
+get https://api.spotify.com/v1/search?q=album:certified%20lover%20boy&type=album
+Authorization: Bearer BQAJICgvL8ueYE0hwcfShGTsNSRt4wEWyNaOCgANifDen7s3pJ3V4-0WaRYqsjdbz4NVw05vpBZZSyWUziHn3_mQ74uWAIKtsPhnfJ_4W0tWZiEgpWw
+
