@@ -1,12 +1,24 @@
-.pane{
+.anchor-pane{
     -fx-background-color: #111111;
 }
-.anchor-pane{
+.pane{
     -fx-background-color: #111111;
 }
 .label{
     -fx-text-fill: #ffffff;
 }
+.text-field{
+    -fx-background-color: transparent;
+    -fx-border-color: #1DB954;
+    -fx-padding: 10;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 20;
+}
 .title{
-    -fx-text-fill: #1DB954;
+    -fx-text-fill: #1DB954;
+}
+.button{
+    -fx-background-color: #1DB954;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 20;
 }
