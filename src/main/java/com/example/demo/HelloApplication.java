@@ -23,10 +23,12 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-        Scene scene = new Scene(loader.load(), 320, 240);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(loader.load(), 600, 400);
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        scene.getStylesheets().add(String.valueOf(HelloApplication.class.getResource("/css/style.css")));
         stage.show();
 
         IArtistDao artistDao = new IArtistDaoImpl();
@@ -36,12 +38,12 @@ public class HelloApplication extends Application {
 //        Artist artist = artistDao.getById(3);
 //        artist.setSeedTrack("6nTiIhLmQ3FWhvrGafw3ab");
 //        artistDao.update(artist);
-        artistDao.removeById(3);
-        System.out.println("All artists: ");
-        List<Artist> artists = artistDao.getAll();
-        for(Artist art : artists) {
-            System.out.println("ID: "+art.getID()+" SEED ARTIST: "+art.getSeedTrack()+" NAME: "+art.getName());
-        }
+//        artistDao.removeById(2);
+//        System.out.println("All artists: ");
+//        List<Artist> artists = artistDao.getAll();
+//        for(Artist art : artists) {
+//            System.out.println("ID: "+art.getID()+" SEED ARTIST: "+art.getSeedTrack()+" NAME: "+art.getName());
+//        }
 
 //        IDaoUserImpl userDAO = new IDaoUserImpl();
 //
