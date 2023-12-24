@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+//import com.google.gson.Gson;
+//import com.google.gson.JsonArray;
+//import com.google.gson.JsonElement;
+//import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -74,30 +74,30 @@ public class HelloController {
                 in.close();
 
                 // Parse JSON response using Gson
-                Gson gson = new Gson();
-                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
-                // Extract specific data
-                JsonArray items = jsonResponse.getAsJsonArray("tracks");
-
-                for (JsonElement item : items) {
-                    JsonObject musicItem = item.getAsJsonObject();
-                    JsonObject album = musicItem.getAsJsonObject("album");
-                    String albumType = album.get("album_type").getAsString();
-                    String releaseDate = album.get("release_date").getAsString();
-                    String name = musicItem.get("name").getAsString();
-                    JsonArray artists = musicItem.getAsJsonArray("artists");
-                    String artistName = artists.get(0).getAsJsonObject().get("name").getAsString();
-
-                    // Apply logic similar to JavaScript logic here if needed
-                    // Logic for name and artistName length truncation can be added here
-
-                    // Output extracted data
-                    System.out.println("Name: " + name);
-                    System.out.println("Artist: " + artistName);
-                    System.out.println("Album Type: " + albumType);
-                    System.out.println("Release Date: " + releaseDate);
-                    System.out.println("---------------------");
-                }
+//                Gson gson = new Gson();
+//                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+//                // Extract specific data
+//                JsonArray items = jsonResponse.getAsJsonArray("tracks");
+//
+//                for (JsonElement item : items) {
+//                    JsonObject musicItem = item.getAsJsonObject();
+//                    JsonObject album = musicItem.getAsJsonObject("album");
+//                    String albumType = album.get("album_type").getAsString();
+//                    String releaseDate = album.get("release_date").getAsString();
+//                    String name = musicItem.get("name").getAsString();
+//                    JsonArray artists = musicItem.getAsJsonArray("artists");
+//                    String artistName = artists.get(0).getAsJsonObject().get("name").getAsString();
+//
+//                    // Apply logic similar to JavaScript logic here if needed
+//                    // Logic for name and artistName length truncation can be added here
+//
+//                    // Output extracted data
+//                    System.out.println("Name: " + name);
+//                    System.out.println("Artist: " + artistName);
+//                    System.out.println("Album Type: " + albumType);
+//                    System.out.println("Release Date: " + releaseDate);
+//                    System.out.println("---------------------");
+//                }
             } else {
                 System.out.println("HTTP Request Failed: " + responseCode);
             }

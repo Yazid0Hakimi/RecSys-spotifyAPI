@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Dao.Entities.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -108,21 +109,31 @@ public class IDaoUserImpl implements IDaoUser {
     @Override
     public User Login(String email, String password) {
         Connection connection = DbSingeleton.getConnection();
-
         User user = null;
         try {
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM `user` WHERE email = ? AND password = ?");
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                // Assuming you have a constructor in the User class that accepts ResultSet
-                user = new User(rs.getLong("ID"), rs.getString("firstName"), rs.getString("lastName"),
-                        rs.getString("email"), rs.getString("password"), rs.getDate("birthDate"));
+            PreparedStatement pstm = connection.prepareStatement("SELECT *" +
+                    " FROM user WHERE email LIKE ?");
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()){
+                String hashedPassword = rs.getString("password");
+                if (BCrypt.checkpw(password, hashedPassword)){
+                    user = new User();
+                    user.setID(rs.getLong("ID"));
+                    user.setFirstName(rs.getString("firstName"));
+                    user.setLastName(rs.getString("lastName"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPassword(rs.getString("password"));
+                    user.setBirthDate(rs.getDate("birthDate"));
+                    System.out.println("Connected successefuly");
+                }else {
+                    System.out.println("Incorrect password");
+                }
+            }else {
+                System.out.println("User not found");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return user;
     }
