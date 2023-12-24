@@ -1,9 +1,12 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +15,44 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HelloController {
+    @FXML
+    private TextField fullNameField;
 
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private PasswordField confirmPasswordField;
+
+    @FXML
+    private TextField birthDateField;
+
+    // Method to handle sign-up button click
+    @FXML
+    public void handleSignUpButton() {
+        if (fullNameField != null && emailField != null &&
+                passwordField != null && confirmPasswordField != null &&
+                birthDateField != null) {
+
+            String fullName = fullNameField.getText();
+            String email = emailField.getText();
+            String password = passwordField.getText();
+            String confirmPassword = confirmPasswordField.getText();
+            String birthDate = birthDateField.getText();
+
+            // Print input data to console
+            System.out.println("Full Name: " + fullName);
+            System.out.println("Email: " + email);
+            System.out.println("Password: " + password);
+            System.out.println("Confirm Password: " + confirmPassword);
+            System.out.println("Birth Date: " + birthDate);
+        } else {
+            System.err.println("FXML elements are not properly initialized!");
+        }
+    }
     public void sendSpotifyRequest() {
         String requestURL = "https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap";
 
