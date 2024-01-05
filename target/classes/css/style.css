@@ -22,3 +22,30 @@
     -fx-text-fill: #ffffff;
     -fx-background-radius: 20;
 }
+.top-bar{
+    -fx-background-color: #212121;
+}
+.grid{
+    -fx-background-color: #111111;
+}
+.bg-3{
+    -fx-background-color: #535353;
+}
+.artist-name{
+    -fx-text-fill: #B3B3B3;
+}
+
+/* Set background color for the Accordion */
+.accordion {
+    -fx-background-color: #212121; /* Set your desired background color */
+}
+
+/* Set background color for the TitledPane headers */
+.titled-pane > .header {
+    -fx-background-color: #535353; /* Set header background color */
+}
+
+/* Set background color for the content area of TitledPane */
+.titled-pane > .content {
+    -fx-background-color: #ffffff; /* Set content area background color */
+}

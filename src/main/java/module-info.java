@@ -6,8 +6,8 @@ module com.example.demo {
     requires jbcrypt;
 
 
-    opens com.example.demo to javafx.fxml;
-    exports com.example.demo;
-    exports com.example.demo.controller;
-    opens com.example.demo.controller to javafx.fxml;
+    opens ma.enset.recsys to javafx.fxml;
+    exports ma.enset.recsys;
+    exports ma.enset.recsys.controller;
+    opens ma.enset.recsys.controller to javafx.fxml;
 }
