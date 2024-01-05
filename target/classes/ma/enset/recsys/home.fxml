@@ -3,14 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -85,9 +88,20 @@
       </VBox>
    </left>
    <center>
-      <GridPane fx:id="songsGrid" hgap="30.0" styleClass="grid" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="10.0" left="50.0" right="50.0" top="30.0" />
-         </padding></GridPane>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="grid" BorderPane.alignment="CENTER">
+         <content>
+            <GridPane fx:id="songsGrid" hgap="27.0" styleClass="grid" vgap="20.0">
+               <padding>
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="30.0" />
+               </padding>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>
