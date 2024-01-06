@@ -1,7 +1,7 @@
-module com.example.demo {
+module ma.enset.recsys {
     requires javafx.controls;
     requires javafx.fxml;
-//    requires com.google.gson;
+    requires com.google.gson;
     requires java.sql;
     requires jbcrypt;
 

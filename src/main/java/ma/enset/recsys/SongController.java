@@ -11,7 +11,7 @@ public class SongController {
     @FXML private Label songName;
 
     public void setData(Song song){
-        Image image = new Image(getClass().getResourceAsStream(song.getCoverImg()));
+        Image image = new Image(song.getCoverImg());
         coverImg.setImage(image);
         songName.setText(song.getSongName());
         artist.setText(song.getArtist());
