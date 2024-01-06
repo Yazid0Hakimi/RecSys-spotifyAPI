@@ -7,12 +7,18 @@ import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import ma.enset.recsys.Dao.Entities.Album;
+import ma.enset.recsys.Dao.Entities.Artist;
+import ma.enset.recsys.Dao.Entities.Genre;
+import ma.enset.recsys.Dao.IUserPreferences;
+import ma.enset.recsys.Dao.IUserPreferencesImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class HelloController {
     @FXML
@@ -98,5 +104,27 @@ public class HelloController {
     }
 
     public static void main(String[] args) {
-        sendSpotifyRequest();    }
+        IUserPreferences userPreferences = new IUserPreferencesImpl();
+
+        // Test getGenres
+        List<Genre> genres = userPreferences.getGenres();
+        System.out.println("Genres:");
+        for (Genre genre : genres) {
+            System.out.println(genre.getID() + ": " + genre.getName() + ", Seed Genres: " + genre.getSeedGenres());
+        }
+
+        // Test getAlbums
+        List<Album> albums = userPreferences.getAlbums();
+        System.out.println("\nAlbums:");
+        for (Album album : albums) {
+            System.out.println(album.getID() + ": " + album.getName() + ", Seed Albums: " + album.getSeedAlbums());
+        }
+
+        // Test getArtists
+        List<Artist> artists = userPreferences.getArtists();
+        System.out.println("\nArtists:");
+        for (Artist artist : artists) {
+            System.out.println(artist.getID() + ": " + artist.getName() + ", Seed Artists: " + artist.getSeedArtist());
+        }
+    }
 }

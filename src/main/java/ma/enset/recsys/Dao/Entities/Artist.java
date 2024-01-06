@@ -22,7 +22,7 @@ public class Artist {
         this.ID = ID;
     }
 
-    public String getSeedTrack() {
+    public String getSeedArtist() {
         return seedTrack;
     }
 

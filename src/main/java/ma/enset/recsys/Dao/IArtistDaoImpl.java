@@ -15,7 +15,7 @@ public class IArtistDaoImpl implements IArtistDao{
         Connection connection = DbSingeleton.getConnection();
         try {
             PreparedStatement pstm = connection.prepareStatement("INSERT INTO artist(seed_track, name) VALUES (?, ?)");
-            pstm.setString(1, o.getSeedTrack());
+            pstm.setString(1, o.getSeedArtist());
             pstm.setString(2, o.getName());
             pstm.executeUpdate();
         } catch (SQLException e) {
@@ -79,7 +79,7 @@ public class IArtistDaoImpl implements IArtistDao{
         Connection connection = DbSingeleton.getConnection();
         try {
             PreparedStatement pstm = connection.prepareStatement("UPDATE artist SET seed_track=?, name=? WHERE ID=?");
-            pstm.setString(1, o.getSeedTrack());
+            pstm.setString(1, o.getSeedArtist());
             pstm.setString(2, o.getName());
             pstm.setLong(3, o.getID());
             pstm.executeUpdate();
