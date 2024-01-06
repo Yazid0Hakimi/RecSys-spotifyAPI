@@ -52,7 +52,6 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setResizable(false);
-//            stage.setMaximized(true);
             stage.setTitle("Home");
             stage.centerOnScreen();
             stage.show();

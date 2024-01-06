@@ -2,11 +2,10 @@ package ma.enset.recsys.Dao.Entities;
 
 public class Genre {
     private int ID;
-    private String seedGenres;
     private String name;
 
-    public Genre(String seedGenres, String name) {
-        this.seedGenres = seedGenres;
+    public Genre(String name) {
+//        this.seedGenres = seedGenres;
         this.name = name;
     }
 
@@ -19,13 +18,13 @@ public class Genre {
         this.ID = ID;
     }
 
-    public String getSeedGenres() {
-        return seedGenres;
-    }
-
-    public void setSeedGenres(String seedGenres) {
-        this.seedGenres = seedGenres;
-    }
+//    public String getSeedGenres() {
+//        return seedGenres;
+//    }
+//
+//    public void setSeedGenres(String seedGenres) {
+//        this.seedGenres = seedGenres;
+//    }
 
     public String getName() {
         return name;

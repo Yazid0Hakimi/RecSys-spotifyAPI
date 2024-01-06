@@ -110,7 +110,7 @@ public class HelloController {
         List<Genre> genres = userPreferences.getGenres();
         System.out.println("Genres:");
         for (Genre genre : genres) {
-            System.out.println(genre.getID() + ": " + genre.getName() + ", Seed Genres: " + genre.getSeedGenres());
+            System.out.println(genre.getID() + ": " + genre.getName());
         }
 
         // Test getAlbums
