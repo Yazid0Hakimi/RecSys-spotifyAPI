@@ -1,9 +1,9 @@
 package ma.enset.recsys.controller;
 
-//import com.google.gson.Gson;
-//import com.google.gson.JsonArray;
-//import com.google.gson.JsonElement;
-//import com.google.gson.JsonObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -53,15 +53,13 @@ public class HelloController {
             System.err.println("FXML elements are not properly initialized!");
         }
     }
-    public void sendSpotifyRequest() {
+    public static void sendSpotifyRequest() {
         String requestURL = "https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap";
-
         try {
             URL url = new URL(requestURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer BQB9EJBI2IoCd0JCl82C_nAn6LZn_dlY5KjsJwU1YxGDAZRnoinTWMjw0ekdsl6KN-ncbLKMBInAZaJ6jHJklCLe9cdGIoN-aax0QyoC7eRH5o7xZak");
-
+            connection.setRequestProperty("Authorization", "Bearer BQD_-iqh1a24v7NUoG_89pIloYpvWbgzPJ-RjSkWW0hRonfQR2vZO2KYDkptjlBAmf0FkbfSeclsBp8ct6AHUBxdwzf7T50EjF_5p4J9WcVist5gk4Q");
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -72,32 +70,25 @@ public class HelloController {
                     response.append(inputLine);
                 }
                 in.close();
+                Gson gson = new Gson();
+                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+                JsonArray items = jsonResponse.getAsJsonArray("tracks");
 
-                // Parse JSON response using Gson
-//                Gson gson = new Gson();
-//                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
-//                // Extract specific data
-//                JsonArray items = jsonResponse.getAsJsonArray("tracks");
-//
-//                for (JsonElement item : items) {
-//                    JsonObject musicItem = item.getAsJsonObject();
-//                    JsonObject album = musicItem.getAsJsonObject("album");
-//                    String albumType = album.get("album_type").getAsString();
-//                    String releaseDate = album.get("release_date").getAsString();
-//                    String name = musicItem.get("name").getAsString();
-//                    JsonArray artists = musicItem.getAsJsonArray("artists");
-//                    String artistName = artists.get(0).getAsJsonObject().get("name").getAsString();
-//
-//                    // Apply logic similar to JavaScript logic here if needed
-//                    // Logic for name and artistName length truncation can be added here
-//
-//                    // Output extracted data
-//                    System.out.println("Name: " + name);
-//                    System.out.println("Artist: " + artistName);
-//                    System.out.println("Album Type: " + albumType);
-//                    System.out.println("Release Date: " + releaseDate);
-//                    System.out.println("---------------------");
-//                }
+                for (JsonElement item : items) {
+                    JsonObject musicItem = item.getAsJsonObject();
+                    JsonObject album = musicItem.getAsJsonObject("album");
+                    String name = musicItem.get("name").getAsString();
+                    JsonArray imagesArray = album.getAsJsonArray("images");
+                    String ImageUrl = imagesArray.get(1).getAsJsonObject().get("url").getAsString();
+                    JsonArray artists = musicItem.getAsJsonArray("artists");
+                    String artistName = artists.get(0).getAsJsonObject().get("name").getAsString();
+
+
+                    System.out.println("Name: " + name);
+                    System.out.println("Artist: " + artistName);
+                    System.out.println("images : " + ImageUrl);
+                    System.out.println("---------------------");
+                }
             } else {
                 System.out.println("HTTP Request Failed: " + responseCode);
             }
@@ -105,4 +96,7 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        sendSpotifyRequest();    }
 }

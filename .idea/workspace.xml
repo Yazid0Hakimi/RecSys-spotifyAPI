@@ -5,15 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="782be185-8076-4111-85b0-dffbfb6f51d7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/3jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/demo/HelloApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/HomeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ma/enset/recsys/Home.fxml~Stashed changes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/Dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/Dao/Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/SongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/enset/recsys/controller/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ma/enset/recsys/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ma/enset/recsys/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ma/enset/recsys/song.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ma/enset/recsys/song.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ma/enset/recsys/controller/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ma/enset/recsys/controller/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ma/enset/recsys/home.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +57,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "Application.ma.enset.recsys.App.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -60,7 +67,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/salam/Desktop/wail/ENSET/S3/JAVA/Projet/RecSys-spotifyAPI/mysql-connector-java-8.0.30.jar",
+    "last_opened_file_path": "C:/Users/Administrateur/Desktop/Enset-M/S3/java/TP/demo/mysql-connector-java-8.0.30.jar",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
