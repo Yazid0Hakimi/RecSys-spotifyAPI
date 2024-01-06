@@ -59,7 +59,7 @@ public class HomeController implements Initializable {
                     URL url = new URL(requestURL);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
-                    connection.setRequestProperty("Authorization", "Bearer BQBrZ3Y3hoAJzQoLu2rmnev9UKNa1e76i-VEKh0Jw4XwGXTsV5YYZIbfooNyjwCOUiblZ-kQ4VAF_Mgtx8Joz3ikpyfhRardu0wR4eYW7TSAmU3qmp0");
+                    connection.setRequestProperty("Authorization", "Bearer BQBBR3gN5njT1oNl6Z5JXeUG7V_O3uKvVucYxxKqGEIfbCmh5x7v8O9OaQYT8Vsup1tOky_WmLBQnqG8jIXZJed4FUJ6GnJ-qebLBOrcxtSwOIGJPbM");
                     int responseCode = connection.getResponseCode();
 
                     if (responseCode == HttpURLConnection.HTTP_OK) {

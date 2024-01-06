@@ -22,7 +22,7 @@ public class IUserPreferencesImpl implements IUserPreferences {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM `genre`");
             while (rs.next()) {
-                Genre genre = new Genre(rs.getString("seed_genres"), rs.getString("name"));
+                Genre genre = new Genre( rs.getString("name"));
                 genre.setID(rs.getInt("ID"));
                 genreList.add(genre);
             }
