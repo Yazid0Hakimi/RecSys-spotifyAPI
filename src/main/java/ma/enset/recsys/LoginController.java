@@ -28,6 +28,7 @@ public class LoginController {
         User user = userDAO.Login(email, password);
         System.out.println(user.getFirstName() + " " + user.getLastName());
         openHomePage((Stage) emailField.getScene().getWindow());
+        //
     }
 
     public void handleSignUpLink(MouseEvent mouseEvent) {
