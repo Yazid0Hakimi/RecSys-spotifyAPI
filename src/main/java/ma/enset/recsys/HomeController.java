@@ -66,7 +66,7 @@ public class HomeController implements Initializable {
                         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                         StringBuilder response = new StringBuilder();
                         String inputLine;
-
+//
                         while ((inputLine = in.readLine()) != null) {
                             response.append(inputLine);
                         }
