@@ -10,6 +10,9 @@ public class Album {
         this.name = name;
     }
 
+    public Album() {
+    }
+
     // Getters and setters for the attributes
     public int getID() {
         return ID;

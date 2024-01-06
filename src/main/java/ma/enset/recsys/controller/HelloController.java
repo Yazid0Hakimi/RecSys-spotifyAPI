@@ -59,14 +59,20 @@ public class HelloController {
             System.err.println("FXML elements are not properly initialized!");
         }
     }
-    public static void sendSpotifyRequest() {
-        String requestURL = "https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap";
+
+    public static void sendSpotifyRequest(String seedTracks, String seedGenres, String seedArtists) {
+
+// we need to check if seedtracks .... are filled or empty
+        String requestURL = "https://api.spotify.com/v1/recommendations?seed_tracks=" + seedTracks +
+                "&seed_genres=" + seedGenres + "&seed_artists=" + seedArtists;
+
         try {
             URL url = new URL(requestURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer BQD_-iqh1a24v7NUoG_89pIloYpvWbgzPJ-RjSkWW0hRonfQR2vZO2KYDkptjlBAmf0FkbfSeclsBp8ct6AHUBxdwzf7T50EjF_5p4J9WcVist5gk4Q");
+            connection.setRequestProperty("Authorization", "Bearer BQAW8-c7xi-XIpll9u3SVcxW2iaqWYrQ0Zaadn9mcvIZUAW7YVTVFedFHn5bUGkdnUhRdIra7pB_QI6gbksvHyMrnLYqvlW1ejZ9LD9Vgys-yJUUEA0");
             int responseCode = connection.getResponseCode();
+
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder response = new StringBuilder();
@@ -76,6 +82,7 @@ public class HelloController {
                     response.append(inputLine);
                 }
                 in.close();
+
                 Gson gson = new Gson();
                 JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
                 JsonArray items = jsonResponse.getAsJsonArray("tracks");
@@ -85,14 +92,13 @@ public class HelloController {
                     JsonObject album = musicItem.getAsJsonObject("album");
                     String name = musicItem.get("name").getAsString();
                     JsonArray imagesArray = album.getAsJsonArray("images");
-                    String ImageUrl = imagesArray.get(1).getAsJsonObject().get("url").getAsString();
+                    String imageUrl = imagesArray.get(1).getAsJsonObject().get("url").getAsString();
                     JsonArray artists = musicItem.getAsJsonArray("artists");
                     String artistName = artists.get(0).getAsJsonObject().get("name").getAsString();
 
-
                     System.out.println("Name: " + name);
                     System.out.println("Artist: " + artistName);
-                    System.out.println("images : " + ImageUrl);
+                    System.out.println("Images: " + imageUrl);
                     System.out.println("---------------------");
                 }
             } else {
@@ -103,14 +109,14 @@ public class HelloController {
         }
     }
 
-    public static void main(String[] args) {
-        IUserPreferences userPreferences = new IUserPreferencesImpl();
 
+    public static void getPreferences() {
+        IUserPreferences userPreferences = new IUserPreferencesImpl();
         // Test getGenres
         List<Genre> genres = userPreferences.getGenres();
         System.out.println("Genres:");
         for (Genre genre : genres) {
-            System.out.println(genre.getID() + ": " + genre.getName() );
+            System.out.println(genre.getID() + ": " + genre.getName());
         }
 
         // Test getAlbums
@@ -126,5 +132,100 @@ public class HelloController {
         for (Artist artist : artists) {
             System.out.println(artist.getID() + ": " + artist.getName() + ", Seed Artists: " + artist.getSeedArtist());
         }
+    }
+
+    public static void sendSpotifySearchArtistRequest(String query) {
+        query.replace(" ", "%20");
+        String requestURL = "https://api.spotify.com/v1/search?q=artist:" + query + "&type=artist";
+        try {
+            URL url = new URL(requestURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", "Bearer BQAW8-c7xi-XIpll9u3SVcxW2iaqWYrQ0Zaadn9mcvIZUAW7YVTVFedFHn5bUGkdnUhRdIra7pB_QI6gbksvHyMrnLYqvlW1ejZ9LD9Vgys-yJUUEA0");
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                Gson gson = new Gson();
+                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+                JsonObject artistsObject = jsonResponse.getAsJsonObject("artists");
+                JsonArray items = artistsObject.getAsJsonArray("items");
+
+                JsonObject artist = items.get(0).getAsJsonObject();
+                String artistName = artist.get("name").getAsString();
+                String artistId = artist.get("id").getAsString();
+
+                System.out.println("Artist Name: " + artistName);
+                System.out.println("Artist ID: " + artistId);
+                System.out.println("---------------------");
+
+            } else {
+                System.out.println("HTTP Request Failed: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendSpotifySearchAlbumRequest(String query) {
+        query = query.replace(" ", "%20");
+        String requestURL = "https://api.spotify.com/v1/search?q=album:" + query + "&type=album";
+        try {
+            URL url = new URL(requestURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", "Bearer BQAW8-c7xi-XIpll9u3SVcxW2iaqWYrQ0Zaadn9mcvIZUAW7YVTVFedFHn5bUGkdnUhRdIra7pB_QI6gbksvHyMrnLYqvlW1ejZ9LD9Vgys-yJUUEA0");
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                Gson gson = new Gson();
+                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+                JsonObject albumsObject = jsonResponse.getAsJsonObject("albums");
+                JsonArray items = albumsObject.getAsJsonArray("items");
+
+                if (items.size() > 0) {
+                    JsonObject album = items.get(0).getAsJsonObject();
+                    String albumName = album.get("name").getAsString();
+                    String albumId = album.get("id").getAsString();
+
+                    System.out.println("Album Name: " + albumName);
+                    System.out.println("Album ID: " + albumId);
+                    System.out.println("---------------------");
+                } else {
+                    System.out.println("No albums found for the query: " + query);
+                }
+            } else {
+                System.out.println("HTTP Request Failed: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        String genre = "hiphop";
+        String album = "6VJwtVaX5pGXibVdA358dc";
+        String artist = "3TVXtAsR1Inumwj472S9r4";
+//        getPreferences();
+        sendSpotifyRequest(album, genre, artist);
+//        sendSpotifySearchArtistRequest("drake");
+//        sendSpotifySearchAlbumRequest("black Rose");
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package ma.enset.recsys.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

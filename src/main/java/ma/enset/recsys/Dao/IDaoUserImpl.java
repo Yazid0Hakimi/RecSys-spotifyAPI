@@ -1,5 +1,6 @@
 package ma.enset.recsys.Dao;
 
+import ma.enset.Session;
 import ma.enset.recsys.Dao.Entities.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -110,14 +111,16 @@ public class IDaoUserImpl implements IDaoUser {
     public User Login(String email, String password) {
         Connection connection = DbSingeleton.getConnection();
         User user = null;
+
         try {
-            PreparedStatement pstm = connection.prepareStatement("SELECT *" +
-                    " FROM user WHERE email LIKE ?");
+            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM user WHERE email LIKE ?");
             pstm.setString(1, email);
             ResultSet rs = pstm.executeQuery();
-            if (rs.next()){
+
+            if (rs.next()) {
                 String hashedPassword = rs.getString("password");
-                if (BCrypt.checkpw(password, hashedPassword)){
+
+                if (BCrypt.checkpw(password, hashedPassword)) {
                     user = new User();
                     user.setID(rs.getLong("ID"));
                     user.setFirstName(rs.getString("firstName"));
@@ -125,11 +128,16 @@ public class IDaoUserImpl implements IDaoUser {
                     user.setEmail(rs.getString("email"));
                     user.setPassword(rs.getString("password"));
                     user.setBirthDate(rs.getDate("birthDate"));
-                    System.out.println("Connected successefuly");
-                }else {
+
+                    // Set session variables
+                    Session.setUsername(user.getFirstName() + " " + user.getLastName());
+                    Session.setUserId(user.getID());
+
+                    System.out.println("Connected successfully");
+                } else {
                     System.out.println("Incorrect password");
                 }
-            }else {
+            } else {
                 System.out.println("User not found");
             }
         } catch (SQLException e) {

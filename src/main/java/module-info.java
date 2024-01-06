@@ -4,6 +4,7 @@ module ma.enset.recsys {
     requires com.google.gson;
     requires java.sql;
     requires jbcrypt;
+    requires java.prefs;
 
 
     opens ma.enset.recsys to javafx.fxml;

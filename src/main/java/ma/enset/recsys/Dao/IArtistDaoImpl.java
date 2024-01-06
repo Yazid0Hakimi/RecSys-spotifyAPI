@@ -1,5 +1,6 @@
 package ma.enset.recsys.Dao;
 
+import ma.enset.Session;
 import ma.enset.recsys.Dao.Entities.Artist;
 
 import java.sql.Connection;
@@ -14,6 +15,7 @@ public class IArtistDaoImpl implements IArtistDao{
     public void save(Artist o) {
         Connection connection = DbSingeleton.getConnection();
         try {
+
             PreparedStatement pstm = connection.prepareStatement("INSERT INTO artist(seed_track, name) VALUES (?, ?)");
             pstm.setString(1, o.getSeedArtist());
             pstm.setString(2, o.getName());
@@ -36,30 +38,11 @@ public class IArtistDaoImpl implements IArtistDao{
     }
 
     @Override
-    public Artist getById(long id) {
-        Connection connection = DbSingeleton.getConnection();
-        Artist artist = new Artist();
-        try {
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM artist WHERE ID=?");
-            pstm.setLong(1, id);
-            ResultSet rs = pstm.executeQuery();
-            if (rs.next()){
-                artist.setID(rs.getLong("ID"));
-                artist.setSeedTrack(rs.getString("seed_track"));
-                artist.setName(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return artist;
-    }
-
-    @Override
     public List<Artist> getAll() {
         Connection connection = DbSingeleton.getConnection();
         List<Artist> artists = new ArrayList<>();
         try {
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM artist");
+            PreparedStatement pstm = connection.prepareStatement("SELECT ar.ID,ar.seed_artists, ar.name FROM artist ar JOIN user_artist ua ON ar.ID = ua.artistId WHERE ua.userId ="+ Session.getUserId());
             ResultSet rs = pstm.executeQuery();
             while (rs.next()){
                 Artist artist = new Artist();
@@ -74,17 +57,5 @@ public class IArtistDaoImpl implements IArtistDao{
         return artists;
     }
 
-    @Override
-    public void update(Artist o) {
-        Connection connection = DbSingeleton.getConnection();
-        try {
-            PreparedStatement pstm = connection.prepareStatement("UPDATE artist SET seed_track=?, name=? WHERE ID=?");
-            pstm.setString(1, o.getSeedArtist());
-            pstm.setString(2, o.getName());
-            pstm.setLong(3, o.getID());
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

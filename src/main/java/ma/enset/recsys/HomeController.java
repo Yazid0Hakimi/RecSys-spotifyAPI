@@ -25,11 +25,13 @@ import java.util.ResourceBundle;
 
 import com.google.gson.Gson;
 import javafx.util.Duration;
+import ma.enset.Session;
 
 public class HomeController implements Initializable {
     @FXML private GridPane songsGrid;
     @FXML private ProgressIndicator spinner;
     private List<Song> recommendations;
+    private static final String SPOTIFY_BEARER_TOKEN = "BQBBR3gN5njT1oNl6Z5JXeUG7V_O3uKvVucYxxKqGEIfbCmh5x7v8O9OaQYT8Vsup1tOky_WmLBQnqG8jIXZJed4FUJ6GnJ-qebLBOrcxtSwOIGJPbM";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +61,7 @@ public class HomeController implements Initializable {
                     URL url = new URL(requestURL);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
-                    connection.setRequestProperty("Authorization", "Bearer BQBBR3gN5njT1oNl6Z5JXeUG7V_O3uKvVucYxxKqGEIfbCmh5x7v8O9OaQYT8Vsup1tOky_WmLBQnqG8jIXZJed4FUJ6GnJ-qebLBOrcxtSwOIGJPbM");
+                    connection.setRequestProperty("Authorization", "Bearer " + SPOTIFY_BEARER_TOKEN);
                     int responseCode = connection.getResponseCode();
 
                     if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -90,6 +92,7 @@ public class HomeController implements Initializable {
                             song.setArtist(artistName);
                             song.setCoverImg(imageUrl);
                             songs.add(song);
+                            System.out.println(Session.getUserId()+ "  " + Session.getUsername());
                         }
                     } else {
                         System.out.println("HTTP Request Failed: " + responseCode);
