@@ -12,7 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +39,7 @@ public class HomeController implements Initializable {
     @FXML private Button genresPreferences;
     @FXML private Button albumsPreferences;
     @FXML private Button artistsPreferences;
+    @FXML private Label userProfile;
     private List<Song> recommendations;
 
     @Override
@@ -60,14 +64,34 @@ public class HomeController implements Initializable {
             @Override
             protected List<Song> call() throws Exception {
                 List<Song> songs = new ArrayList<>();
-                if (songs.isEmpty()){
+                if (true){
+                    VBox vbox = new VBox();
+//                    ImageView imageView = new ImageView();
+//                    Image img = new Image(getClass().getResourceAsStream("/images/spotify.jpeg"));
+//                    imageView.setImage(img);
+                    Label label = new Label("You don't have any preferences yet !");
+                    vbox.getChildren().add(label);
+                    songsGrid.add(vbox, 0, 0);
+//                    try {
+//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("song.fxml"));
+//                        VBox songLayout = loader.load();
+//
+//                        SongController songController = loader.getController();
+//                        songController.setData(new Song("/images/safar-cover.jpg", "You don't have any preferences yet !", "You don't have any preferences yet !"));
+//
+//                        songsGrid.add(songLayout, 0, 0);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+                }
+                else{
                     String requestURL = "https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,6nTiIhLmQ3FWhvrGafw2zj&seed_genres=morrocanRap";
 
                     try {
                         URL url = new URL(requestURL);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
-                        connection.setRequestProperty("Authorization", "Bearer BQC9R1926EPWgYlStSCzIj_FsC-IeJ_Bkiraao6S7fEO2qznYy0add79TLerTF8Rl1t6_3mwmAluGoDwnG4kMbNGDbNDikGkwn2qa1yaKNZYDkESMDw");
+                        connection.setRequestProperty("Authorization", "Bearer BQA-AI7YM57JL8ydLKxqiU01TTurqVef8eyxY7076ZTB_XOhAdE_nIXAI-X0_Lu8r_7tPjolzoKfo2VTxg0xuewCg-d0ElMU3h77uMj8wh2NYQvjPdQ");
                         int responseCode = connection.getResponseCode();
 
                         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -104,6 +128,7 @@ public class HomeController implements Initializable {
                         e.printStackTrace();
                     }
                 }
+
                 return songs;
             }
         };
@@ -155,7 +180,7 @@ public class HomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("artist-preferences.fxml"));
         try {
             Scene scene = new Scene(loader.load(), 1200, 600);
-            Stage stage = (Stage) genresPreferences.getScene().getWindow();
+            Stage stage = (Stage) artistsPreferences.getScene().getWindow();
             stage.setScene(scene);
             stage.setResizable(false);
             stage.setTitle("Artists Preferences");
@@ -170,10 +195,25 @@ public class HomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("album-preferences.fxml"));
         try {
             Scene scene = new Scene(loader.load(), 1200, 600);
-            Stage stage = (Stage) genresPreferences.getScene().getWindow();
+            Stage stage = (Stage) albumsPreferences.getScene().getWindow();
             stage.setScene(scene);
             stage.setResizable(false);
             stage.setTitle("Albums Preferences");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void handleUserProfileLink(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("user-profile.fxml"));
+        try {
+            Scene scene = new Scene(loader.load(), 1200, 600);
+            Stage stage = (Stage) userProfile.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("User Profile");
             stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {

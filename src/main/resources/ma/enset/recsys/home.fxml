@@ -40,14 +40,17 @@
                </padding>
             </HBox>
             <Pane prefHeight="60.0" prefWidth="755.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/safar-cover.jpg" />
+                        <Image url="@../../../images/avatar.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="61.0" prefWidth="140.0" text="Username">
+                  <Label fx:id="userProfile" onMouseClicked="#handleUserProfileLink" alignment="CENTER" prefHeight="61.0" prefWidth="140.0" text="Username">
                      <font>
                         <Font size="14.0" />
                      </font>

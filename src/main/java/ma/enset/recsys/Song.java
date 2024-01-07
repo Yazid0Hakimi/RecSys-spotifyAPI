@@ -5,6 +5,15 @@ public class Song {
     private String songName;
     private String artist;
 
+    public Song() {
+    }
+
+    public Song(String coverImg, String songName, String artist) {
+        this.coverImg = coverImg;
+        this.songName = songName;
+        this.artist = artist;
+    }
+
     public String getCoverImg() {
         return coverImg;
     }
