@@ -2,5 +2,10 @@ package ma.enset.recsys.Dao;
 
 import ma.enset.recsys.Dao.Entities.Artist;
 
-public interface IArtistDao extends Dao<Artist> {
+import java.util.List;
+
+public interface IArtistDao {
+     void saveArtist(Artist o);
+     void removeArtistById(long id);
+
 }

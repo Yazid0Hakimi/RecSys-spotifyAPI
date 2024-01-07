@@ -1,7 +1,6 @@
 package ma.enset.recsys.Dao;
 
-import ma.enset.Session;
-import ma.enset.recsys.Dao.Entities.Artist;
+import ma.enset.recsys.Dao.Entities.Album;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,15 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IArtistDaoImpl implements IArtistDao{
+public class IAlbumDaoImpl implements IAlbumDao {
     @Override
-    public void saveArtist(Artist o) {
+    public void saveAlbum(Album album) {
         Connection connection = DbSingeleton.getConnection();
         try {
-
-            PreparedStatement pstm = connection.prepareStatement("INSERT INTO artist(seed_track, name) VALUES (?, ?)");
-            pstm.setString(1, o.getSeedArtist());
-            pstm.setString(2, o.getName());
+            PreparedStatement pstm = connection.prepareStatement("INSERT INTO album(seed_albums, name) VALUES (?, ?)");
+            pstm.setString(1, album.getSeedAlbums());
+            pstm.setString(2, album.getName());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -26,17 +24,14 @@ public class IArtistDaoImpl implements IArtistDao{
     }
 
     @Override
-    public void removeArtistById(long id) {
+    public void removeAlbumById(long id) {
         Connection connection = DbSingeleton.getConnection();
         try {
-            PreparedStatement pstm = connection.prepareStatement("DELETE FROM artist WHERE ID=?");
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM album WHERE ID=?");
             pstm.setLong(1, id);
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
 }

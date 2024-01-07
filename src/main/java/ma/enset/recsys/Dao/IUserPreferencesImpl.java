@@ -1,5 +1,6 @@
 package ma.enset.recsys.Dao;
 
+import ma.enset.Session;
 import ma.enset.recsys.Dao.Entities.Album;
 import ma.enset.recsys.Dao.Entities.Artist;
 import ma.enset.recsys.Dao.Entities.Genre;
@@ -20,7 +21,7 @@ public class IUserPreferencesImpl implements IUserPreferences {
         List<Genre> genreList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `genre`");
+            ResultSet rs = stmt.executeQuery("SELECT g.ID ,g.name FROM genre g JOIN user_genre ug ON g.ID = ug.genreId WHERE ug.userId ="+ Session.getUserId());
             while (rs.next()) {
                 Genre genre = new Genre( rs.getString("name"));
                 genre.setID(rs.getInt("ID"));
@@ -39,7 +40,7 @@ public class IUserPreferencesImpl implements IUserPreferences {
         List<Album> albumList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `album`");
+            ResultSet rs = stmt.executeQuery("SELECT a.ID,a.seed_albums, a.name FROM album a JOIN user_album ua ON a.ID = ua.albumId WHERE ua.userId ="+Session.getUserId());
             while (rs.next()) {
                 Album album = new Album(rs.getString("seed_albums"), rs.getString("name"));
                 album.setID(rs.getInt("ID"));
@@ -58,7 +59,7 @@ public class IUserPreferencesImpl implements IUserPreferences {
         List<Artist> artistList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM `artist`");
+            ResultSet rs = stmt.executeQuery("SELECT ar.ID,ar.seed_artists, ar.name FROM artist ar JOIN user_artist ua ON ar.ID = ua.artistId WHERE ua.userId ="+Session.getUserId());
 
             while (rs.next()) {
                 Artist artist = new Artist(rs.getString("seed_artists"),rs.getString("name"));
