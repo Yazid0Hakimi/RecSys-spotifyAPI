@@ -11,7 +11,7 @@ import java.util.List;
 
 public class IAlbumDaoImpl implements IAlbumDao {
     @Override
-    public void save(Album album) {
+    public void saveAlbum(Album album) {
         Connection connection = DbSingeleton.getConnection();
         try {
             PreparedStatement pstm = connection.prepareStatement("INSERT INTO album(seed_albums, name) VALUES (?, ?)");
@@ -24,7 +24,7 @@ public class IAlbumDaoImpl implements IAlbumDao {
     }
 
     @Override
-    public void removeById(long id) {
+    public void removeAlbumById(long id) {
         Connection connection = DbSingeleton.getConnection();
         try {
             PreparedStatement pstm = connection.prepareStatement("DELETE FROM album WHERE ID=?");
@@ -33,25 +33,5 @@ public class IAlbumDaoImpl implements IAlbumDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public List<Album> getAll() {
-        Connection connection = DbSingeleton.getConnection();
-        List<Album> albums = new ArrayList<>();
-        try {
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM album");
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                Album album = new Album();
-                album.setID(rs.getInt("ID"));
-                album.setSeedAlbums(rs.getString("seed_albums"));
-                album.setName(rs.getString("name"));
-                albums.add(album);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return albums;
     }
 }

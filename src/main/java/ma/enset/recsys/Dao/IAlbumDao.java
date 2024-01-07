@@ -5,7 +5,6 @@ import ma.enset.recsys.Dao.Entities.Album;
 import java.util.List;
 
 public interface IAlbumDao {
-    void save(Album album);
-    void removeById(long id);
-    List<Album> getAll();
+    void saveAlbum(Album album);
+    void removeAlbumById(long id);
 }
