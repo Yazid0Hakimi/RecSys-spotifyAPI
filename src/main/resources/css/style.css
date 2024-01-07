@@ -60,3 +60,7 @@
     -fx-background-color: #535353;
     -fx-background-radius: 5px;
 }
+
+#scroll{
+    -fx-background-color: #111111 !important;
+}

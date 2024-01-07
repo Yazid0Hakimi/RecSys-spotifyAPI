@@ -41,12 +41,15 @@
                </padding>
             </HBox>
             <Pane prefHeight="60.0" prefWidth="755.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/safar-cover.jpg" />
+                        <Image url="@../../../images/avatar.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                   </ImageView>
                   <Label prefHeight="61.0" prefWidth="140.0" text="Username">
                      <font>
@@ -95,6 +98,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -107,6 +111,11 @@
                   </Label>
                   <ComboBox fx:id="genresBox" prefHeight="36.0" prefWidth="599.0" GridPane.columnIndex="1" />
                   <Button fx:id="addPreferences" mnemonicParsing="false" onAction="#addGenreToPreferences" prefHeight="36.0" prefWidth="266.0" text="Add to preference" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="266.0" text="Remove" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="30.0" right="30.0" />
                      </GridPane.margin>
